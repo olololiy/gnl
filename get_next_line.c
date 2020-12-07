@@ -6,19 +6,21 @@
 /*   By: vfurr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 15:29:15 by vfurr             #+#    #+#             */
-/*   Updated: 2020/12/06 20:41:58 by vfurr            ###   ########.fr       */
+/*   Updated: 2020/12/07 23:00:10 by vfurr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
 //# include <string.h>
 # include <unistd.h>
 
+
 void ft_proc_for_buf(char **buf, **line, )
 {
 	char *fline = '\0';
-	while (
+	while 
 	line = ft_strjoin(line, buf);
 	
 	if (buf == '\0')
@@ -29,24 +31,24 @@ void ft_proc_for_buf(char **buf, **line, )
 
 }
 
- int get_next_line(int fd, char **line)
+int get_next_line(int fd, char **line)
 {
 	static char *buf;
+	int i;
+	int size;
+	
+	size = 0;
 	if (buf == NULL)
-	{
 		buf = malloc(char *(BUFFER_SIZE + 1));
-		buf[BUFFER_SIZE] = '\0';
-	}
-	if (buf)
-	//	printf("%s", "D");
-		ft_proc_for_buf(&buf, &line);
-else
-	{
-	//	printf("%s", "S");
-		
-		read(fd, buf, 10);
-		ft_proc_for_buf(&buf, &line);
-	}
+	while (line[i] = '\0')
+		if (*buf || *b == '\n')
+			ft_strjoin(line, &buf, i)
+		else
+		{
+			buf = buf - size
+			size =  read(fd, buf, 10);	
+		}
+		line[i] = '\0';
 	return 0;
 
 }

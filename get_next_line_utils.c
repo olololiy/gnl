@@ -6,7 +6,7 @@
 /*   By: vfurr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:47:28 by vfurr             #+#    #+#             */
-/*   Updated: 2020/12/06 17:52:56 by vfurr            ###   ########.fr       */
+/*   Updated: 2020/12/07 22:55:46 by vfurr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	ft_strlenn(const char *str)
 	return (i);
 }
 
-char	*ft_strjoinn(char const *s1, char const *s2)
+char	*ft_strjoinn(char const *s1, char const **s2, int i)
 {
 	size_t	lens1;
 	size_t	lens2;
@@ -47,6 +47,7 @@ char	*ft_strjoinn(char const *s1, char const *s2)
 	}
 	while (s2[j] != '\0' || s2[j] != '\n')
 		b[i++] = s2[j++];
-	b[i] = '\0';
+//	b[i] = '\0';
+	b[i] = s2[j];
 	return (b);
 }
