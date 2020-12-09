@@ -16,21 +16,6 @@
 //# include <string.h>
 # include <unistd.h>
 
-
-void ft_proc_for_buf(char **buf, **line, )
-{
-	char *fline = '\0';
-	while 
-	line = ft_strjoin(line, buf);
-	
-	if (buf == '\0')
-	{
-		buf = buf - BUFFER_SIZE;
-		*buf = '\0';
-	}
-
-}
-
 int get_next_line(int fd, char **line)
 {
 	static char *buf;
@@ -41,14 +26,21 @@ int get_next_line(int fd, char **line)
 	if (buf == NULL)
 		buf = malloc(char *(BUFFER_SIZE + 1));
 	while (line[i] = '\0')
-		if (*buf || *b == '\n')
-			ft_strjoin(line, &buf, i)
+	{
+		if (*buf || *buf == '\n')
+		{
+			ft_strjoin(line, &buf, i);
+			if (line[i] = '\n')
+		}
+				line[i] = '\0';
 		else
 		{
 			buf = buf - size
-			size =  read(fd, buf, 10);	
+			size =  read(fd, buf, 10);
+			buf[size] = '\0';
 		}
-		line[i] = '\0';
+		//line[i] = '\0';
+	}
 	return 0;
 
 }

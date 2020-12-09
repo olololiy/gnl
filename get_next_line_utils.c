@@ -23,13 +23,11 @@ size_t	ft_strlenn(const char *str)
 	return (i);
 }
 
-char	*ft_strjoinn(char const *s1, char const **s2, int i)
+char	*ft_strjoinn(char const *s1, char **s2, int i)
 {
 	size_t	lens1;
 	size_t	lens2;
 	char	*b;
-	size_t	i;
-	size_t	j;
 
 	i = 0;
 	j = 0;
@@ -45,9 +43,8 @@ char	*ft_strjoinn(char const *s1, char const **s2, int i)
 		b[i] = s1[i];
 		i++;
 	}
-	while (s2[j] != '\0' || s2[j] != '\n')
-		b[i++] = s2[j++];
-//	b[i] = '\0';
-	b[i] = s2[j];
+	while (*s2 != '\0' || *s2 != '\n')
+		b[i++] = *s2++;
+	b[i] = *s2;
 	return (b);
 }
