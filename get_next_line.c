@@ -6,7 +6,7 @@
 /*   By: vfurr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 15:29:15 by vfurr             #+#    #+#             */
-/*   Updated: 2020/12/09 22:09:14 by vfurr            ###   ########.fr       */
+/*   Updated: 2020/12/09 22:31:33 by vfurr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,23 @@ int get_next_line(int fd, char **line)
 	static char *buf;
 	int i;
 	int size;
-	int BUFFER_SIZE = 32;
 	
 	size	= 0;
 	i 		= 0;
-	if (buf == NULL)
-		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	*buf = '\0';
-	while (*line[i] == '\0')
+	if (!buf)
 	{
-		if (*buf != '\0' || *buf == '\n')//излишнее условие
+		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		buf = NULL;
+	}
+	while ((*line)[i] == '\0')
+	{
+		write (1, "tut\n", 1);
+		if (buf && *buf != '\0')//излишнее условие
 			ft_strjoinn(*line, &buf, &i);
 		else
 		{
 			buf = buf - size;
-			size =  read(fd, buf, 10);
+			size =  read(fd, buf, BUFFER_SIZE);
 			if (size == (-1))
 				return (-1);
 			buf[size + 1] = '\0';
