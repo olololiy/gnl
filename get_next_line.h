@@ -25,7 +25,7 @@
 # include <unistd.h>
 
 size_t	ft_strlenn(const char *str);
-char	*ft_strjoinn(char const *s1, char **s2, int *i);
+char	*ft_strjoinn(char **s1, char **s2);
 int 	get_next_line(int fd, char **line);
 
 #endif

@@ -16,29 +16,31 @@
 int get_next_line(int fd, char **line)
 {
 	static char *buf;
-	int i;
 	int size;
 	
 	size	= 0;
-	i 		= 0;
+    *line = '\0';
 	if (!buf)
 		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	while (*buf == '\0' || (*line)[i] == '\0')
+	while (*buf == '\0' || *line[ft_strlenn(*line)] == '\0')
 	{
         if(*buf == '\0')
 		{
+
 			buf = buf - size;				//возможно эту строчку можно запихнуть в следующую
 			size =  read(fd, buf, BUFFER_SIZE);
 			if (size == (-1))				
 				return (-1);
 			buf[size + 1] = '\0';
 		}
+
 		if (buf != NULL && *buf != '\0')	//излишнее условие//нет
-            line =	ft_strjoinn(*line, &buf, &i);
+            *line =	ft_strjoinn(&line, &buf);
 	}
-	*line[i] = '\0';
+    *line[ft_strlenn(*line)] = '\0';
 	if (size < BUFFER_SIZE)
 		return (0);
+
 	return (1);
 }
 
@@ -50,4 +52,6 @@ int main()
 	fd = open("/Users/vfurr/workplace/gnl/text.txt", O_RDONLY);
 	printf("%d", get_next_line(fd, &line));
 	printf("%s\n", line);
+    printf("%d", get_next_line(fd, &line));
+    printf("%s\n", line);
 }
