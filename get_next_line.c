@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#define BUFFER_SIZE 32
+#define BUFFER_SIZE 10
 
 int get_next_line(int fd, char **line)
 {
@@ -19,39 +19,46 @@ int get_next_line(int fd, char **line)
 	int size;
 	
 	size	= 0;
-    *line = '\0';
+   // *line = '\0';
 	if (!buf)
 		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	while (*buf == '\0' || *line[ft_strlenn(*line)] == '\0')
+	while (*buf == '\0' || *buf++ == '\n'/*||  *line[ft_strlenn(*line)] == '\0'*/)//пока баф существует
 	{
         if(*buf == '\0')
 		{
 
-			buf = buf - size;				//возможно эту строчку можно запихнуть в следующую
+			buf = buf - size;			    //возможно эту строчку можно запихнуть в следующую
 			size =  read(fd, buf, BUFFER_SIZE);
-			if (size == (-1))				
+			if (size < 1)
 				return (-1);
 			buf[size + 1] = '\0';
 		}
-
-		if (buf != NULL && *buf != '\0')	//излишнее условие//нет
-            *line =	ft_strjoinn(&line, &buf);
+		if (/*buf != NULL && */ *buf != '\0')	//излишнее условие//нет
+            *line =	ft_strjoinn(*line, &buf);
+        if (*buf == '\n')
+            break;
 	}
-    *line[ft_strlenn(*line)] = '\0';
+    //*line[ft_strlenn(*line)] = '\0';
 	if (size < BUFFER_SIZE)
 		return (0);
-
 	return (1);
 }
 
 int main()
 {
-	char *line;
+	char *line1;
 	int fd;
+	//*line1 = 'a';
 
 	fd = open("/Users/vfurr/workplace/gnl/text.txt", O_RDONLY);
-	printf("%d", get_next_line(fd, &line));
-	printf("%s\n", line);
-    printf("%d", get_next_line(fd, &line));
-    printf("%s\n", line);
+//	printf("%d", get_next_line(fd, &line));
+//	printf("%s\n", line);
+//    printf("%d", get_next_line(fd, &line));
+//    printf("%s\n", line);
+//    printf("%d", get_next_line(fd, &line));
+
+    while(get_next_line(fd, &line1) >-1)
+    {
+        printf("%s\n", line1);
+    }
 }
