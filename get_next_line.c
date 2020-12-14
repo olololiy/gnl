@@ -19,28 +19,29 @@ int get_next_line(int fd, char **line)
 	int size;
 	
 	size	= 0;
-   // *line = '\0';
-	if (!buf)
-		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+    **line = '\0';
+	if (!(buf = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
+        return (-1);
 	while (*buf == '\0' || *buf++ == '\n'/*||  *line[ft_strlenn(*line)] == '\0'*/)//пока баф существует
 	{
         if(*buf == '\0')
 		{
-
 			buf = buf - size;			    //возможно эту строчку можно запихнуть в следующую
-			size =  read(fd, buf, BUFFER_SIZE);
-			if (size < 1)
-				return (-1);
+			if(!(size =  read(fd, buf, BUFFER_SIZE)))
+			{
+                free(buf);
+                return (-1);
+            }
 			buf[size + 1] = '\0';
 		}
 		if (/*buf != NULL && */ *buf != '\0')	//излишнее условие//нет
-            *line =	ft_strjoinn(*line, &buf);
+            *line =	ft_strjoinn(line, &buf);
         if (*buf == '\n')
             break;
 	}
     //*line[ft_strlenn(*line)] = '\0';
-	if (size < BUFFER_SIZE)
-		return (0);
+//	if (size < BUFFER_SIZE)
+//		return (0);
 	return (1);
 }
 
