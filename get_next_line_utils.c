@@ -35,26 +35,26 @@ char	*ft_strjoinn(char **s1, char **s2)
 	i = 0;
 	lens2 = ft_strlenn(*s2);
 	lens1 = ft_strlenn(*s1);
-	s1 = s1 - lens1;
+	//s1 = s1 - lens1;
 //	if (*s1 == '\0')
 //	    lens1 = 1;
 
 	b = (char *)malloc(sizeof(char) * (lens1 + lens2 + 1));
 	if (!b)
 		return (0);
-	while (*s1 != '\0')
+	while (**s1 != '\0')
 	{
-		b = *s1;
+		*b = **s1;
 		i++;
 		b++;
-        *s1++;
+        (*s1)++;
 	}
 
 	while (**s2 != '\0' && **s2 != '\n')
 	{
         *b = **s2;
 		(*s2)++;//вот так делай
-        *b++;
+        b++;
 		i++;
 	}
 	//*b = *s2;
