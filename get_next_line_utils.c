@@ -33,9 +33,9 @@ char	*ft_strjoinn(char **s1, char **s2)
 	int i;
 
 	i = 0;
-	lens2 = ft_strlenn(*s2);
+
 	lens1 = ft_strlenn(*s1);
-	//s1 = s1 - lens1;
+	lens2 = ft_strlenn(*s2);//s1 = s1 - lens1;
 //	if (*s1 == '\0')
 //	    lens1 = 1;
 

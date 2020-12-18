@@ -15,14 +15,40 @@
 
 int get_next_line(int fd, char **line)
 {
-	static char *buf;
+	static char buf[BUFFER_SIZE + 1];
 	int size;
-	
-	size	= 0;
+
+	**line = '\0';
+
+
+	while(1)
+	{
+		if (*buf == '\0')
+		{
+			size = read(fd, buf, BUFFER_SIZE);
+			buf[size+1] = '\0';
+		}
+		if (!line || size < 0)//что-то с fd
+			return (-1);
+		if (ft_strjoinn(line, buf) == (-1))
+			return (-1);
+		if (buf == '\n')
+		{
+			(*buf)++;
+			return (1);// можно сделать тернарник с нижнем условием
+		}
+		if (size == 0)
+			return (0);
+
+	}
+
+
+
+	/*size = 0;
     **line = '\0';
 	if (!(buf = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
         return (-1);
-	while (*buf == '\0' || *buf++ == '\n'/*||  *line[ft_strlenn(*line)] == '\0'*/)//пока баф существует
+	while (*buf == '\0' || *buf++ == '\n'/*||  *line[ft_strlenn(*line)] == '\0')//пока баф существует
 	{
         if(*buf == '\0')
 		{
@@ -34,15 +60,15 @@ int get_next_line(int fd, char **line)
             }
 			buf[size + 1] = '\0';
 		}
-		if (/*buf != NULL && */ *buf != '\0')	//излишнее условие//нет
+		if (*buf != NULL && *buf == '\0')
             *line =	ft_strjoinn(line, &buf);
         if (*buf == '\n')
             break;
 	}
-    //*line[ft_strlenn(*line)] = '\0';
-//	if (size < BUFFER_SIZE)
-//		return (0);
-	return (1);
+    *line[ft_strlenn(*line)] = '\0';
+	if (size < BUFFER_SIZE)
+		return (0);
+	return (1);*/
 }
 
 int main()
@@ -51,7 +77,7 @@ int main()
 	int fd;
 	//*line1 = 'a';
 
-	fd = open("/Users/vfurr/workplace/gnl/text.txt", O_RDONLY);
+	fd = open("/home/a/workplace/gnl/text.txt", O_RDONLY);
 //	printf("%d", get_next_line(fd, &line));
 //	printf("%s\n", line);
 //    printf("%d", get_next_line(fd, &line));

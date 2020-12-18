@@ -26,6 +26,7 @@
 
 size_t	ft_strlenn(const char *str);
 char	*ft_strjoinn(char **s1, char **s2);
-int 	get_next_line(int fd, char **line);
+
+_Noreturn int 	get_next_line(int fd, char **line);
 
 #endif

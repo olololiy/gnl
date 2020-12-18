@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/vfurr/workplace/gnl/get_next_line.c" "/Users/vfurr/workplace/gnl/cmake-build-debug/CMakeFiles/gnl.dir/get_next_line.c.o"
-  "/Users/vfurr/workplace/gnl/get_next_line_utils.c" "/Users/vfurr/workplace/gnl/cmake-build-debug/CMakeFiles/gnl.dir/get_next_line_utils.c.o"
+  "/home/a/workplace/gnl/get_next_line.c" "/home/a/workplace/gnl/cmake-build-debug/CMakeFiles/gnl.dir/get_next_line.c.o"
+  "/home/a/workplace/gnl/get_next_line_utils.c" "/home/a/workplace/gnl/cmake-build-debug/CMakeFiles/gnl.dir/get_next_line_utils.c.o"
   )
-set(CMAKE_C_COMPILER_ID "AppleClang")
+set(CMAKE_C_COMPILER_ID "Clang")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH

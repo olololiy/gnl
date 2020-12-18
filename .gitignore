@@ -1,0 +1,6 @@
+a.out
+/cmake-build-debug
+CmakeLists.txt
+.idea
+main.c
+
