@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/a/workplace/gnl/get_next_line.c
+/Users/vfurr/workplace/gnl/get_next_line.c
 get_next_line.h
-/home/a/workplace/gnl/get_next_line.h
+/Users/vfurr/workplace/gnl/get_next_line.h
 
-/home/a/workplace/gnl/get_next_line.h
+/Users/vfurr/workplace/gnl/get_next_line.h
 stdio.h
 -
 stdlib.h

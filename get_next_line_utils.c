@@ -17,7 +17,7 @@ size_t	ft_strlenn(const char *str)
 	int i;
 
 	i = 0;
-	while (*str != '\n' && *str != '\0')
+	while (str && *str != '\0' && *str != '\n' )
 	{
         str++;
 		i++;
@@ -33,16 +33,16 @@ char	*ft_strjoinn(char **s1, char **s2)
 	int i;
 
 	i = 0;
-
-	lens1 = ft_strlenn(*s1);
-	lens2 = ft_strlenn(*s2);//s1 = s1 - lens1;
+    lens2 = ft_strlenn(*s2);
+	lens1 = ft_strlenn(s1);
+	;//s1 = s1 - lens1;
 //	if (*s1 == '\0')
 //	    lens1 = 1;
 
 	b = (char *)malloc(sizeof(char) * (lens1 + lens2 + 1));//после этого утечка line (str1)
 	if (!b)
 		return (0);
-	while (**s1 != '\0')
+	while (*s1 && **s1 != '\0')
 	{
 		*b = **s1;
 		i++;

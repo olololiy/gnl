@@ -16,24 +16,26 @@
 int get_next_line(int fd, char **line) {
 	static char fbuf[BUFFER_SIZE + 1];
 	int size;
-	char *buf = fbuf;
+	static char *buf;
 	size = 0;
-	**line = '\0';
+	*line = '\0';
+	//buf = '\0';
 
 	while (1) {
-		if (*fbuf == '\0') {
-			buf = buf - size;
+		if (/*buf || */buf == '\0')
+		{
+			//buf = buf - size;
+			buf = fbuf;
 			size = read(fd, buf, BUFFER_SIZE);
-			buf[size + 1] = '\0';//убери. стек сразу с нулями идет(но это не точно)
-
+			fbuf[size + 1] = '\0';//убери. стек сразу с нулями идет(но это не точно)
 		}
-
-		if (!*line || size < 0)//что-то с fd
+		if (size < 0 || !line)//что-то с fd
 			return (-1);
 		*line = ft_strjoinn(line, &buf);
-		if (**line == (-1))
+		if ( *line == (-1))
 			return (-1);
-		if (*buf == '\n') {
+		if (*buf == '\n')
+		{
 			buf++;
 			return (1);// можно сделать тернарник с нижнем условием
 		}
