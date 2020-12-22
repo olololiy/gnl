@@ -11,44 +11,44 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#define BUFFER_SIZE 10
+#define BUFFER_SIZE 5
 
-int get_next_line(int fd, char **line)
-{
-	static char buf[BUFFER_SIZE + 1];
+int get_next_line(int fd, char **line) {
+	static char fbuf[BUFFER_SIZE + 1];
 	int size;
-
+	char *buf = fbuf;
+	size = 0;
 	**line = '\0';
 
-
-	while(1)
-	{
-		if (*buf == '\0')
-		{
+	while (1) {
+		if (*fbuf == '\0') {
+			buf = buf - size;
 			size = read(fd, buf, BUFFER_SIZE);
-			buf[size+1] = '\0';
+			buf[size + 1] = '\0';//убери. стек сразу с нулями идет(но это не точно)
+
 		}
-		if (!line || size < 0)//что-то с fd
+
+		if (!*line || size < 0)//что-то с fd
 			return (-1);
-		if (ft_strjoinn(line, buf) == (-1))
+		*line = ft_strjoinn(line, &buf);
+		if (**line == (-1))
 			return (-1);
-		if (buf == '\n')
-		{
-			(*buf)++;
+		if (*buf == '\n') {
+			buf++;
 			return (1);// можно сделать тернарник с нижнем условием
 		}
 		if (size == 0)
 			return (0);
 
 	}
-
+}
 
 
 	/*size = 0;
     **line = '\0';
 	if (!(buf = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
         return (-1);
-	while (*buf == '\0' || *buf++ == '\n'/*||  *line[ft_strlenn(*line)] == '\0')//пока баф существует
+	while (*buf == '\0' || *buf++ == '\n'||  *line[ft_strlenn(*line)] == '\0')//пока баф существует
 	{
         if(*buf == '\0')
 		{
@@ -69,13 +69,13 @@ int get_next_line(int fd, char **line)
 	if (size < BUFFER_SIZE)
 		return (0);
 	return (1);*/
-}
 
-int main()
+
+/*int main()
 {
 	char *line1;
 	int fd;
-	//*line1 = 'a';
+	*line1 = 'a';
 
 	fd = open("/home/a/workplace/gnl/text.txt", O_RDONLY);
 //	printf("%d", get_next_line(fd, &line));
@@ -89,3 +89,4 @@ int main()
         printf("%s\n", line1);
     }
 }
+*/

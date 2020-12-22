@@ -197,6 +197,33 @@ get_next_line_utils.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gnl.dir/build.make CMakeFiles/gnl.dir/get_next_line_utils.c.s
 .PHONY : get_next_line_utils.c.s
 
+main.o: main.c.o
+
+.PHONY : main.o
+
+# target to build an object file
+main.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gnl.dir/build.make CMakeFiles/gnl.dir/main.c.o
+.PHONY : main.c.o
+
+main.i: main.c.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gnl.dir/build.make CMakeFiles/gnl.dir/main.c.i
+.PHONY : main.c.i
+
+main.s: main.c.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gnl.dir/build.make CMakeFiles/gnl.dir/main.c.s
+.PHONY : main.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -212,6 +239,9 @@ help:
 	@echo "... get_next_line_utils.o"
 	@echo "... get_next_line_utils.i"
 	@echo "... get_next_line_utils.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

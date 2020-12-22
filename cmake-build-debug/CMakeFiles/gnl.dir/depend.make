@@ -7,3 +7,6 @@ CMakeFiles/gnl.dir/get_next_line.c.o: ../get_next_line.h
 CMakeFiles/gnl.dir/get_next_line_utils.c.o: ../get_next_line.h
 CMakeFiles/gnl.dir/get_next_line_utils.c.o: ../get_next_line_utils.c
 
+CMakeFiles/gnl.dir/main.c.o: ../get_next_line.h
+CMakeFiles/gnl.dir/main.c.o: ../main.c
+

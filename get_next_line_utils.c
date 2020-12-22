@@ -39,7 +39,7 @@ char	*ft_strjoinn(char **s1, char **s2)
 //	if (*s1 == '\0')
 //	    lens1 = 1;
 
-	b = (char *)malloc(sizeof(char) * (lens1 + lens2 + 1));
+	b = (char *)malloc(sizeof(char) * (lens1 + lens2 + 1));//после этого утечка line (str1)
 	if (!b)
 		return (0);
 	while (**s1 != '\0')

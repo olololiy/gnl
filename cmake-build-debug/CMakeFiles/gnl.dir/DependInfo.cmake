@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "/home/a/workplace/gnl/get_next_line.c" "/home/a/workplace/gnl/cmake-build-debug/CMakeFiles/gnl.dir/get_next_line.c.o"
   "/home/a/workplace/gnl/get_next_line_utils.c" "/home/a/workplace/gnl/cmake-build-debug/CMakeFiles/gnl.dir/get_next_line_utils.c.o"
+  "/home/a/workplace/gnl/main.c" "/home/a/workplace/gnl/cmake-build-debug/CMakeFiles/gnl.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "Clang")
 

@@ -1,1 +1,1 @@
-/usr/bin/clang-6.0 -g   CMakeFiles/gnl.dir/get_next_line.c.o CMakeFiles/gnl.dir/get_next_line_utils.c.o  -o gnl 
+/usr/bin/clang-6.0 -g   CMakeFiles/gnl.dir/get_next_line.c.o CMakeFiles/gnl.dir/get_next_line_utils.c.o CMakeFiles/gnl.dir/main.c.o  -o gnl 

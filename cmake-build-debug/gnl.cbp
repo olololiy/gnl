@@ -87,6 +87,9 @@
 		<Unit filename="/home/a/workplace/gnl/get_next_line_utils.c">
 			<Option target="gnl"/>
 		</Unit>
+		<Unit filename="/home/a/workplace/gnl/main.c">
+			<Option target="gnl"/>
+		</Unit>
 		<Unit filename="/home/a/workplace/gnl/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
