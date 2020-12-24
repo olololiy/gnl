@@ -41,7 +41,7 @@ char	*ft_strjoinn(char **s1, char **s2)
 
 	b = (char *)malloc(sizeof(char) * (lens1 + lens2 + 1));//после этого утечка line (str1)
 	if (!b)
-		return (0);
+		return (-1);
 	while (*s1 && **s1 != '\0')
 	{
 		*b = **s1;
