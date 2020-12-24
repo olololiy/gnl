@@ -13,41 +13,34 @@
 #include "get_next_line.h"
 #define BUFFER_SIZE 5
 
-int get_next_line(int fd, char **line) {
+int get_next_line(int fd, char **line)
+{
 	static char fbuf[BUFFER_SIZE+1];
-	static int size;
+	int size;
 	static char *buf;
-	//size = 0;
+
 	*line = "\0";
-	//buf = "a";
-	//buf = "\0";
-	//*buf = "c";
-//	*buf = 'd';
-
-
-
-	while (1) {
+	while (1)
+	{
 		if (buf == '\0' || *buf == '\0')
 		{
-			//buf = buf - size;
 			buf = fbuf;
 			size = read(fd, buf, BUFFER_SIZE);
 			fbuf[size] = '\0';//убери. стек сразу с нулями идет(но это не точно)
-			//if (size == 0 && *line == "\0")
-			//	return (0);
-
+			if (size == 0 && **line == '\0')
+				return (0);
 		}
 		if (size < 0 || !line)//что-то с fd
 			return (-1);
 		*line = ft_strjoinn(line, &buf);
 		if ( *line == (-1))
 			return (-1);
-		if (*buf == '\n' /*|| (size == 0 && *buf == '\0')*/)
+		if (*buf == '\n' || (size == 0 && fbuf[0] == '\0'))
 		{
-			buf++;
+			if (fbuf[0] != '\0')
+			    buf++;
 			return (1);// можно сделать тернарник с нижнем условием
 		}
-
 	}
 }
 
