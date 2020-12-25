@@ -37,9 +37,11 @@ int get_next_line(int fd, char **line)
 			return (-1);
 		if (*buf == '\n' || (size == 0 && fbuf[0] == '\0'))
 		{
-			if (fbuf[0] != '\0')
-			    buf++;
-			return (1);// можно сделать тернарник с нижнем условием
+			if (fbuf[0] != '\0') {
+				buf++;
+				return (1);
+			}
+			return (0);// можно сделать тернарник с нижнем условием
 		}
 	}
 }
