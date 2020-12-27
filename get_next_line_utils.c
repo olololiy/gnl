@@ -34,22 +34,28 @@ char	*ft_strjoinn(char **s1, char **s2)
 
 	i = 0;
     lens2 = ft_strlenn(*s2);
-	lens1 = ft_strlenn(s1);
+	lens1 = ft_strlenn(*s1);
 	;//s1 = s1 - lens1;
 //	if (*s1 == '\0')
 //	    lens1 = 1;
 
 	b = (char *)malloc(sizeof(char) * (lens1 + lens2 + 1));//после этого утечка line (str1)
-	if (!b)
-		return (-1);
+	if (!b) {
+        *b = -1;
+        if (**s1 != '\0')
+            free(*s1);
+        return (b);
+    }
 	while (*s1 && **s1 != '\0')
 	{
 		*b = **s1;
 		i++;
 		b++;
+		//free(s1);
         (*s1)++;
 	}
-
+	if (i > 0)
+            free((*s1)-i);
 	while (**s2 != '\0' && **s2 != '\n')
 	{
         *b = **s2;

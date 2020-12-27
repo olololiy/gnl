@@ -13,38 +13,56 @@
 #include "get_next_line.h"
 #define BUFFER_SIZE 5
 
-int get_next_line(int fd, char **line)
-{
-	static char fbuf[BUFFER_SIZE+1];
-	int size;
-	static char *buf;
+int get_next_line(int fd, char **line) {
+    static char fbuf[BUFFER_SIZE + 1];
+    static int size;
+    static char *buf;
 
-	*line = "\0";
-	while (1)
-	{
-		if (buf == '\0' || *buf == '\0')
+    if (!line || (read(fd, 0, 0)) < 0 || BUFFER_SIZE < 1)//что-то с fd
+        return (-1);
+    *line = "\0";
+    while (1) {
+        if (buf == '\0' || *buf == '\0')
+        {
+            fbuf[0] = '\0';
+            size = read(fd, fbuf, BUFFER_SIZE);
+            fbuf[size] = '\0';//убери. стек сразу с нулями идет(но это не точно)
+            buf = fbuf;
+        }
+        if (fbuf[0] == '\0')
+        {//тернар со след строкой
+            //if (**line != '\0')
+              //   free(*line);
+            return (0);
+        }
+        if (size < 0 /*|| !line*/)//что-то с fd
+            return (-1);
+        if (size > 0)
+            *line = ft_strjoinn(line, &buf);
+        if (**line == (-1))
+            return (-1);
+        if (*buf == '\n' || (size == 0 && fbuf[0] == '\0')) {
+            buf++;
+            if (size == 0 && *buf == '\0')
+                return (0);
+            return (1);
+
+        }
+    }
+}
+		/*if (*buf == '\n' || (size == 0 && fbuf[0] == '\0'))
 		{
-			buf = fbuf;
-			size = read(fd, buf, BUFFER_SIZE);
-			fbuf[size] = '\0';//убери. стек сразу с нулями идет(но это не точно)
-			if (size == 0 && **line == '\0')
-				return (0);
-		}
-		if (size < 0 || !line)//что-то с fd
-			return (-1);
-		*line = ft_strjoinn(line, &buf);
-		if ( *line == (-1))
-			return (-1);
-		if (*buf == '\n' || (size == 0 && fbuf[0] == '\0'))
-		{
-			if (fbuf[0] != '\0') {
-				buf++;
+		    buf++;
+			if (fbuf[0] != '\0' && *buf != '\0' )
+			{
+			    if (*(buf+1) != '\0')
+                    return (0);
 				return (1);
 			}
 			return (0);// можно сделать тернарник с нижнем условием
-		}
-	}
-}
+		}*/
+
+
 
 
 	/*size = 0;
