@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#define BUFFER_SIZE 1
+//#define BUFFER_SIZE 1
 
 int get_next_line(int fd, char **line) {
     static char fbuf[BUFFER_SIZE + 1];

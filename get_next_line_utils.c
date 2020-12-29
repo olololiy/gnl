@@ -46,7 +46,7 @@ char	*ft_strjoinn(char *line, char **s2)
          i++;
          b++;
 	}
-	if(!(*line))
+	//if(!(*line))
 	free(line);
       while (**s2 != '\0' && **s2 != '\n')
       {
