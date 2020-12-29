@@ -15,12 +15,14 @@
 
 int get_next_line(int fd, char **line) {
     static char fbuf[BUFFER_SIZE + 1];
-    static int size;
+    int size;
     static char *buf;
 
+    //*line = NULL;
     if (!line || (read(fd, 0, 0)) < 0 || BUFFER_SIZE < 1)//что-то с fd
         return (-1);
-    *line = "\0";
+    *line = malloc(sizeof(char) * 1);
+    *line = "\0";//not
     while (1) {
         if (buf == '\0' || *buf == '\0')
         {
@@ -39,7 +41,7 @@ int get_next_line(int fd, char **line) {
             return (-1);
         if (size > 0)
             *line = ft_strjoinn(line, &buf);
-        if (**line == (-1))
+        if (*line == NULL) //seg
             return (-1);
         if (*buf == '\n' || (size == 0 && fbuf[0] == '\0')) {
             buf++;
@@ -49,6 +51,7 @@ int get_next_line(int fd, char **line) {
 
         }
     }
+    //ret 0
 }
 		/*if (*buf == '\n' || (size == 0 && fbuf[0] == '\0'))
 		{
