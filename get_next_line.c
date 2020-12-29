@@ -11,44 +11,50 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#define BUFFER_SIZE 5
+#define BUFFER_SIZE 1
 
 int get_next_line(int fd, char **line) {
     static char fbuf[BUFFER_SIZE + 1];
-    int size;
+    static int size;
     static char *buf;
 
-    //*line = NULL;
+
+    if (!line) {
+        return (-1);
+    }
+    else
+        {
+        *line = malloc(sizeof(char));
+        (*line)[0] = '\0';
+        }
     if (!line || (read(fd, 0, 0)) < 0 || BUFFER_SIZE < 1)//что-то с fd
         return (-1);
-    *line = malloc(sizeof(char) * 1);
-    *line = "\0";//not
-    while (1) {
-        if (buf == '\0' || *buf == '\0')
+   // *line = "\0";
+    //if (!(*line))
+      //  return (-1);
+    while (1)
+    {
+        if (buf == NULL || *buf == '\0')
         {
             fbuf[0] = '\0';
             size = read(fd, fbuf, BUFFER_SIZE);
-            fbuf[size] = '\0';//убери. стек сразу с нулями идет(но это не точно)
+            fbuf[size] = '\0';
             buf = fbuf;
         }
-        if (fbuf[0] == '\0')
-        {//тернар со след строкой
-            //if (**line != '\0')
-              //   free(*line);
+        if (/*fbuf[0] == '\0'*/size == 0)                //тернар со след строкой или
+        {
+            //
             return (0);
         }
-        if (size < 0 /*|| !line*/)//что-то с fd
+        if (size < 0)
             return (-1);
-        if (size > 0)
-            *line = ft_strjoinn(line, &buf);
+        *line = ft_strjoinn(*line, &buf);
         if (*line == NULL) //seg
             return (-1);
-        if (*buf == '\n' || (size == 0 && fbuf[0] == '\0')) {
+        if (*buf == '\n' || (size == 0 && fbuf[0] == '\0'))
+        {
             buf++;
-            if (size == 0 && *buf == '\0')
-                return (0);
             return (1);
-
         }
     }
     //ret 0

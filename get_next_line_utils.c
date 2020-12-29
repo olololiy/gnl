@@ -25,7 +25,7 @@ size_t	ft_strlenn(const char *str)
 	return (i);
 }
 
-char	*ft_strjoinn(char **s1, char **s2)
+char	*ft_strjoinn(char *line, char **s2)
 {
 	size_t	lens1;
 	size_t	lens2;
@@ -34,43 +34,30 @@ char	*ft_strjoinn(char **s1, char **s2)
 
 	i = 0;
     lens2 = ft_strlenn(*s2);
-	lens1 = ft_strlenn(*s1);
-	;//s1 = s1 - lens1;
-//	if (*s1 == '\0')
-//	    lens1 = 1;
-
+	lens1 = ft_strlenn(line);
 	b = (char *)malloc(sizeof(char) * (lens1 + lens2 + 1));//после этого утечка line (str1)
 	if (!b) {
-        //*b = -1;//sega (-1)
-        if (**s1 != '\0')
-            free(*s1);
-        return (b);
+       //free(line);
+       return (0);
     }
-	while (*s1 && **s1 != '\0')
+	while (line && line[i] != '\0')
 	{
-		 *b = **s1; //(*s1)[i];
-		i++;
-		b++;
-		//free(s1);
-        (*s1)++; //not
-       /* *b = (*s1)[i];
-        i++;
-        b++;*/
-	}//free(*s1);
-	if (i > 0)
-            free((*s1)-i);
-	while (**s2 != '\0' && **s2 != '\n')
-	{
-        *b = **s2;
-		(*s2)++;//вот так делай
-        b++;
-		i++;
+         *b = line[i];
+         i++;
+         b++;
 	}
-	//*b = *s2;
-	*b = '\0';
-    //(*s2)++;
-	b = b - i;
-	return (b);
-}
+	if(!(*line))
+	free(line);
+      while (**s2 != '\0' && **s2 != '\n')
+      {
+          *b = **s2;
+          (*s2)++;//вот так делай
+          b++;
+          i++;
+      }
+      *b = '\0';
+      b = b - i;
+      return (b);
+  }
 
 
