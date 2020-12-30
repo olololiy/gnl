@@ -6,56 +6,50 @@
 /*   By: vfurr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:47:28 by vfurr             #+#    #+#             */
-/*   Updated: 2020/12/09 22:32:49 by vfurr            ###   ########.fr       */
+/*   Updated: 2020/12/30 23:30:59 by vfurr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlenn(const char *str)
+size_t		ft_strlenn(const char *str)
 {
 	int i;
 
 	i = 0;
-	while (str && *str != '\0' && *str != '\n' )
+	while (str && *str != '\0' && *str != '\n')
 	{
-        str++;
+		str++;
 		i++;
 	}
 	return (i);
 }
 
-char	*ft_strjoinn(char *line, char **s2)
+char		*ft_strjoinn(char *line, char **buf, int i, int length2)
 {
-	size_t	lens1;
-	size_t	lens2;
-	char	*b;
-	int i;
+	int		length1;
+	char	*new_line;
 
-	i = 0;
-    lens2 = ft_strlenn(*s2);
-	lens1 = ft_strlenn(line);
-	b = (char *)malloc(sizeof(char) * (lens1 + lens2 + 1));//после этого утечка line (str1)
-	if (!b) {
-       free(line);
-       return (0);
-    }
-	while (line && line[i] != '\0')
+	length2 = ft_strlenn(*buf);
+	length1 = ft_strlenn(line);
+	if (!(new_line = (char *)malloc(sizeof(char) * (length1 + length2 + 1))))
 	{
-	    *b = line[i];
-	    i++;
-	    b++;
+		free(line);
+		return (0);
+	}
+	while (line && line[++i] != '\0')
+	{
+		*new_line = line[i];
+		new_line++;
 	}
 	free(line);
-	while (**s2 != '\0' && **s2 != '\n')
+	while (**buf != '\0' && **buf != '\n')
 	{
-	    *b = **s2;
-	    (*s2)++;//вот так делай
-	    b++;
-	    i++;
+		*new_line = **buf;
+		(*buf)++;
+		new_line++;
+		i++;
 	}
-      *b = '\0';
-      return (b -i);//b=b-i
-  }
-
-
+	*new_line = '\0';
+	return (new_line - i);
+}
